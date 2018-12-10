@@ -3,7 +3,7 @@ PD3D: Package for Detecting Fluorescent Puncta in 3-D
 
 This repository contains the code for the [PD3D], a package that enables detection of fluorescent puncta in 3-D and assignment of these puncta to objects in a watershed segementation image. This code is intended for detecting and locating fluorescent puncta in 3-D image stacks and was developed as part of the data analysis pipeline for SABER images. Many aspects of the analysis are tailorable to your particular imaging conditions and analysis needs and with very basic MATLAB knowledge, the code should be easily applied. 
 
-
+It should be noted that a number of parameters should be changed according to your precise application. Consulting the source code will be helpful in deciding how to tailor the code to your needs.
 
 If you use this code, please kindly cite our pre-print article:
 
@@ -19,11 +19,11 @@ PD3D is a set of MATLAB functions written using MATLAB version 2018a.
 Installing PD3D dependencies
 ----------------------------------
 
-First, you'll need to download all dependencies, including [MATLAB](https://www.mathworks.com/downloads) (developed on MATLAB 2018a) and OME's [Bio-Format's library](http://www.openmicroscopy.org/bio-formats/) (developed with version 5.9.1). 
+First, you'll need to download all dependencies, including [MATLAB](https://www.mathworks.com/downloads) (developed on MATLAB 2018a) and OME's [Bio-Format's library](http://www.openmicroscopy.org/bio-formats/) (developed with version 5.9.1). I have included the bfmatlab folder used for this development below for convenience.
 
 You will also need to specifically download the [MATLAB Image Processing Toolbox](https://www.mathworks.com/help/images/index.html), which can be done at the time of installation or recursively.
 
-For visualizing the results of puncta segmentation and cell calling, ImageJ (CITE) and ITK-SNAP can be extremely useful. For 3D renderings of segmented cells, ITK-SNAP is particularly useful. 
+For visualizing the results of puncta segmentation and cell calling, [ImageJ](https://imagej.nih.gov/ij/download.html) and [ITK-SNAP](http://www.itksnap.org/pmwiki/pmwiki.php) can be extremely useful. For 3D renderings of segmented cells, ITK-SNAP is particularly useful. 
 
 
     
@@ -42,7 +42,7 @@ Retinal cells were segmented using ACME (Mosaliganti, 2012) based on the WGA mem
 
 Detecting Puncta: Choosing an appropriate threshold for puncta detection
 ---------------------------------------------------------------------------
-This code uses a Laplacian of Gaussian (LoG) method for puncta detection, a technique that has been widely applied for feature detection in image analysis for decades *CITE. The method uses properties of how the image intensity function changes as with image features, for example, that there are sharp changes in intensity values at feature "edges". 
+This code uses a Laplacian of Gaussian (LoG) method for puncta detection, a technique that has been widely applied for feature detection in image analysis for decades. The method uses properties of how the image intensity function changes as with image features, for example, that there are sharp changes in intensity values at feature "edges". The code for 3D LoG filtering was inspired by a similar 2D function developed by Marcelo Cicconet at Harvard Medical School's Image and Data Analysis Core (IDAC), and code for calculating a robust threshold was inspired by a similar 2D function in (Raj, 2008).
 
 There are two major parameters in this method: a puncta size parameter, sigma, and a threshold for the LoG-filtered image. Sigma refers to sigma of the Gaussian function that can be used to estimate our diffraction-limited fluorescent molecules after they've been distorted by the point spread function during detection. This parameter will depend on your imaging resolution and is measured in pixels. In general, the smaller your pixel size, the larger your sigma (because a single puncta will span more pixels at finer resolution). For this sample analysis, we can take sigma=1, but a range of values (0.8 - 1.5) would work. Sigma can be empirically determined by fitting a Gaussian distribution to your puncta. 
 
@@ -144,7 +144,7 @@ To apply this function to our sample data, run the following lines:
 
 
 		>> imfile='./SampleData/InputFiles/SABER_puncta.tif'; threshold=0.18;sigma=1;
-				>> [BackgroundIntAvg,SNR,BackgroundIntensity,SignalmBackAvg,Signal,SignalmBackIntensity,binarycenter]= Signal2Backgroundintensity(filename,threshold,sigma);
+		>> [BackgroundIntAvg,SNR,BackgroundIntensity,SignalmBackAvg,Signal,SignalmBackIntensity,binarycenter]= Signal2Backgroundintensity(filename,threshold,sigma);
 
 BackgroundIntAvg = average intensity of background pixels
 SNR = average intensity of signal pixels after subtracting BackgroundIntAvg, divided by BackgroundIntAvg
@@ -161,15 +161,20 @@ The function outputs a histogram of background-subtracted signal intensities for
 
 Contributing
 ------------
-This code was developed by a novice and any improvements or suggestions are welcome. Please don't hesitate to reach out with questions.
+This code was developed by a novice and any improvements or suggestions are welcome. Please don't hesitate to reach out with questions or suggestions for improving it.
 
 
 Citations
 ---------
+Arjun Raj, Patrick van den Bogaard, Scott a Rifkin, Alexander van Oudenaarden,
+and Sanjay Tyagi. Imaging individual mRNA molecules using
+multiple singly labeled probes. Nature methods, 5(10):877–879, 2008.
+
 Kishore R Mosaliganti, Ramil R Noche, Fengzhu Xiong, Ian A Swinburne,
 and Sean G Megason. Acme: automated cell morphology extractor for
 comprehensive reconstruction of cell membranes. PLoS computational biology,
 8(12):e1002780, 2012.
+
 
 Questions?
 ------------
