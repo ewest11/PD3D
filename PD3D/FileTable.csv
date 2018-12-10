@@ -1,0 +1,2 @@
+﻿Condition,inSitu,WatFile,Sigma,LoGThreshold,ndots,Zvox,OutputWat
+Test,./SampleData/InputFiles/SABER_puncta.tif,./SampleData/InputFiles/wat.tif,1,0.12,1,0.8,poscells.tif
