@@ -1,9 +1,9 @@
 PD3D: Package for Detecting Fluorescent Puncta in 3-D
 ===========
 
-This repository contains the code for the [PD3D], a package that enables detection of fluorescent puncta in 3-D and assignment of these puncta to objects in a watershed segementation image. This code is intended for detecting and locating fluorescent puncta in 3-D image stacks and was developed as part of the data analysis pipeline for SABER images. Many aspects of the analysis are tailorable to your particular imaging conditions and analysis needs and with very basic MATLAB knowledge, the code should be easily applied. 
+This repository contains the code for the [PD3D], a package for detecting fluorescent puncta in 3D and localizing them to objects in a segmentation image. This code was developed as part of the data analysis pipeline for SABER images, a method for fluorescent in situ hybridization for detecting DNA and RNA molecules in tissues and cells.
 
-It should be noted that a number of parameters should be changed according to your precise application. Consulting the source code will be helpful in deciding how to tailor the code to your needs.
+It should be noted that a number of parameters must be changed according to your precise application. Consulting the source code will be helpful in deciding how to tailor the code to your needs and with minimal MATLAB knowledge, the code should be easy to apply.
 
 If you use this code, please kindly cite our pre-print article:
 
@@ -64,7 +64,7 @@ In our example, I chose a threshold of 0.18 based on the graphs.
 
 This function will write out a TIFF file of the detected puncta as 'detected_puncta.tif' in the ./SampleData/OutputFiles/ directory. This is a tiff stack of the detected puncta and can be opened in ImageJ for visualization and comparison to the original SABER image.
 
-When analyzing a number of images for the same conditions and imaging parameters, the same sigma should be used. The LoG threshold often needs to be recalculated for a given image, since it is internally normalized. However, these paramaters might vary across fluorescent channels and targets.
+When analyzing a number of images for the same conditions and imaging parameters, the same sigma should be used. The LoG threshold often needs to be recalculated for each image or identical condition since it is internally normalized. 
 
 
 
@@ -91,7 +91,7 @@ The output file, 'DP.tif' can be opened in ImageJ and merged with the original p
 		
 Quantifying Puncta Per Cell: Combining PD3D with 3-D cell segmentation
 ---------------------------------------------------------------------------		
-In many cases, it is useful to quantify the number of puncta detected in a specific cell. This can be achieved by combining PD3D with cell segmentation. In the retina, we use a membrane-based method for cell segmentation in 3-D called [ACME](https://wiki.med.harvard.edu/SysBio/Megason/ACME). The output of this segmentation algorithm is a 32-bit MHA watershed segmentation, where each object is labelled by a different number. The MHA file should be saved as a TIFF in the current MATLAB working directory (ImageJ can be easily used to convert between file types).
+In many cases, it is useful to quantify the number of puncta detected in a specific cell. This can be achieved by combining PD3D with cell segmentation images. In the retina, we use a membrane-based method for cell segmentation in 3-D called [ACME](https://wiki.med.harvard.edu/SysBio/Megason/ACME). The output of this segmentation algorithm is a 32-bit MHA watershed segmentation, where each object is labelled by a different number. The MHA file should be saved as a TIFF in the current MATLAB working directory (ImageJ can be easily used to convert between file types).
 
 We will set a threshold for calling cells positive if they contain more than one puncta. Since Slc4a is expressed at low levels and there is extremely low background in the SABER image, this threshold should work well.
 
