@@ -115,25 +115,38 @@ The default function parameters for PunctaPerCell eliminate all cells intersecti
 To run this on a number of images with corresponding watershed cell segmentations, you can use the PunctaPerCellBatch.m function. This function takes a CSV file as input, where all input parameters can be specified. You can use the sample table 'FileTable.csv' as a working template and save it in the current directory once you have changed the parameters. Parameters in the file include:
 
 Condition = name of the condition
+
 inSitu = path to the SABER file
+
 WatFile = path to watershed segmentation image file
+
 Sigma = xy sigma of Gaussian for puncta detection 
+
 LoGThreshold = threshold determined by robustThreshold function
+
 ndots = threshold for number of puncta detected to call a cell "positive" 
+
 Zvox = size (um) of voxels in Z-dimension
+
 OutputWat = path to and name of output file for new watershed image with only positive cells
 
 To run the function, copy the following lines:
+		
 		>> FT='./FileTable.csv';
 		>> [finalTArray,BC,Wat,WatBig,SegTable]=PunctaPerCellBatch(FT);
 
 Output variables are arrays with entries corresponding to each row in the input table (i.e. each set of parameters). The outputs are as follows:
 
 finalTArray = Table with entries corresponding to each segmented object. This includes the watershed label ID, object volume, 3D centroid coordinates, and the number of detected puncta within that object. This final table only includes cells that are called positive based on the number of detected puncta in them (i.e. cells with >ndots puncta and that do not intersect the boundary).
+
 SegTable = Table with label IDs, volumes, and 3D centroid coordinates for all elements in watershed image
+
 Wat = Original watershed image
+
 WatBig = Watershed image resized to the image dimensions of the SABER puncta image
+
 PosWat = Watershed image with only whole cells with >ndots puncta
+
 finalTBigArray = Table with label IDs, volumes, 3D centroid coordinates, and number of puncta detected for all whole objects after size filtration.
 
 
@@ -149,10 +162,15 @@ To apply this function to our sample data, run the following lines:
 		>> [BackgroundIntAvg,SNR,BackgroundIntensity,SignalmBackAvg,Signal,SignalmBackIntensity,binarycenter]= Signal2Backgroundintensity(filename,threshold,sigma);
 
 BackgroundIntAvg = average intensity of background pixels
+
 SNR = average intensity of signal pixels after subtracting BackgroundIntAvg, divided by BackgroundIntAvg
+
 BackgroundIntensity = vector with intensity values for all background pixels
+
 SignalmBackAvg = Average value of signal pixels after background subtraction
+
 Signal = vector with max intensity values of all detected puncta
+
 SignalmBackIntensity = vector with background-subtracted intensity values of all detected puncta
 binarycenter = binary image with detected puncta centroids
 
