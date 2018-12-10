@@ -19,7 +19,7 @@ PD3D is a set of MATLAB functions written using MATLAB version 2018a.
 Installing PD3D dependencies
 ----------------------------------
 
-First, you'll need to download all dependencies, including [MATLAB](https://www.mathworks.com/downloads) (developed on MATLAB 2018a) and OME's [Bio-Format's library](http://www.openmicroscopy.org/bio-formats/) (developed with version 5.9.1). I have included the bfmatlab folder used for this development below for convenience.
+First, you'll need to download all dependencies, including [MATLAB](https://www.mathworks.com/downloads) (developed on MATLAB 2018a) and OME's [Bio-Format's library](http://www.openmicroscopy.org/bio-formats/) (developed with version 5.9.1). I have included the bfmatlab folder used for this development for convenience but I certainly did not write this myself and it can be downloaded at the link provided.
 
 You will also need to specifically download the [MATLAB Image Processing Toolbox](https://www.mathworks.com/help/images/index.html), which can be done at the time of installation or recursively.
 
