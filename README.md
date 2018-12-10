@@ -42,7 +42,7 @@ Retinal cells were segmented using ACME (Mosaliganti, 2012) based on the WGA mem
 
 Detecting Puncta: Choosing an appropriate threshold for puncta detection
 ---------------------------------------------------------------------------
-This code uses a Laplacian of Gaussian (LoG) method for puncta detection, a technique that has been widely applied for feature detection in image analysis for decades. The method uses properties of how the image intensity function changes as with image features, for example, that there are sharp changes in intensity values at feature "edges". The code for 3D LoG filtering was inspired by a similar 2D function developed by Marcelo Cicconet at Harvard Medical School's Image and Data Analysis Core (IDAC), and code for calculating a robust threshold was inspired by a similar 2D function in (Raj, 2008).
+This code uses a Laplacian of Gaussian (LoG) method for puncta detection, a technique that has been widely applied for feature detection in image analysis for decades. The method uses properties of how the image intensity function changes with image features, for example, that there are sharp changes in intensity values at feature "edges". The code for 3D LoG filtering was inspired by a similar 2D function developed by Marcelo Cicconet at Harvard Medical School's Image and Data Analysis Core (IDAC), and code for calculating a robust threshold was inspired by a similar 2D function in (Raj, 2008).
 
 There are two major parameters in this method: a puncta size parameter, sigma, and a threshold for the LoG-filtered image. Sigma refers to sigma of the Gaussian function that can be used to estimate our diffraction-limited fluorescent molecules after they've been distorted by the point spread function during detection. This parameter will depend on your imaging resolution and is measured in pixels. In general, the smaller your pixel size, the larger your sigma (because a single puncta will span more pixels at finer resolution). For this sample analysis, we can take sigma=1, but a range of values (0.8 - 1.5) would work. Sigma can be empirically determined by fitting a Gaussian distribution to your puncta. 
 
@@ -135,6 +135,8 @@ Wat = Original watershed image
 WatBig = Watershed image resized to the image dimensions of the SABER puncta image
 PosWat = Watershed image with only whole cells with >ndots puncta
 finalTBigArray = Table with label IDs, volumes, 3D centroid coordinates, and number of puncta detected for all whole objects after size filtration.
+
+
 
 Quantifying Puncta Intensity 
 ---------------------------------------------------------------------------	
