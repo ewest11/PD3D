@@ -136,25 +136,6 @@ WatBig = Watershed image resized to the image dimensions of the SABER puncta ima
 PosWat = Watershed image with only whole cells with >ndots puncta
 finalTBigArray = Table with label IDs, volumes, 3D centroid coordinates, and number of puncta detected for all whole objects after size filtration.
 
-Quantifying Puncta Intensity 
----------------------------------------------------------------------------	
-PD3D can also be used for quantifying the fluorescent intensity of puncta in a SABER image. The function Signal2Backgroundintensity.m uses the LoG-based 3D puncta detection described above to find puncta and calculates the background-subtracted puncta intensity values. 
-
-To apply this function to our sample data, run the following lines:
-
-
-		>> imfile='./SampleData/InputFiles/SABER_puncta.tif'; threshold=0.18;sigma=1;
-		>> [BackgroundIntAvg,SNR,BackgroundIntensity,SignalmBackAvg,Signal,SignalmBackIntensity,binarycenter]= Signal2Backgroundintensity(filename,threshold,sigma);
-
-BackgroundIntAvg = average intensity of background pixels
-SNR = average intensity of signal pixels after subtracting BackgroundIntAvg, divided by BackgroundIntAvg
-BackgroundIntensity = vector with intensity values for all background pixels
-SignalmBackAvg = Average value of signal pixels after background subtraction
-Signal = vector with max intensity values of all detected puncta
-SignalmBackIntensity = vector with background-subtracted intensity values of all detected puncta
-binarycenter = binary image with detected puncta centroids
-
-The function outputs a histogram of background-subtracted signal intensities for all detected puncta in the image. 
 
 
 
