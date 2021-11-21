@@ -179,11 +179,6 @@ The function outputs a histogram of background-subtracted signal intensities for
 
 
 
-Contributing
-------------
-This code was developed by a novice and any improvements or suggestions are welcome. Please don't hesitate to reach out with questions or suggestions for improving it.
-
-
 Citations
 ---------
 Arjun Raj, Patrick van den Bogaard, Scott a Rifkin, Alexander van Oudenaarden,
